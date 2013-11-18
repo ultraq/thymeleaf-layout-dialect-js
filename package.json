@@ -1,0 +1,17 @@
+{
+	"name": "thymeleaf-layout-dialect",
+	"version": "0.1.0",
+	"description": "Thymeleaf Layout Dialect for in-browser prototyping.",
+	"author": "Emanuel Rabina <emanuelrabina@gmail.com> (http://www.ultraq.net.nz/)",
+	"license": "Apache License 2.0",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/ultraq/thymeleaf-layout-dialect-js"
+	},
+	"devDependencies": {
+		"grunt": "~0.4.1",
+		"grunt-bower-requirejs": "~0.7.1",
+		"grunt-contrib-jshint": "~0.7.2",
+		"grunt-contrib-requirejs": "~0.4.1"
+	}
+}
