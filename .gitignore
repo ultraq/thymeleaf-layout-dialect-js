@@ -3,6 +3,9 @@
 /bower_components
 /node_modules
 
+# Eclipse files/directories
+.project
+
 # IntelliJ IDEA files/directories
 /.idea
 *.iml
