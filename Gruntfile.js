@@ -31,8 +31,7 @@ module.exports = function(grunt) {
 		requirejs: {
 			compile: {
 				options: {
-					mainConfigFile: 'Config.js',
-					optimize: 'none'
+					mainConfigFile: 'Config.js'
 				}
 			}
 		}

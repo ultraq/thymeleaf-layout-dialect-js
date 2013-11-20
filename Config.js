@@ -15,11 +15,22 @@
  */
 
 require.config({
+
+	// Optimization config
+	optimize: 'none',
+	generateSourceMaps: true,
+	preserveLicenseComments: true,
+
+	// Dependencies
 	paths: {
-		domready: 'bower_components/domready/ready',
-		jquery: 'bower_components/jquery/jquery',
-		requirejs: 'bower_components/requirejs/require'
+		domready: '../bower_components/domready/ready',
+		jquery: '../bower_components/jquery/jquery',
+		requirejs: '../bower_components/requirejs/require'
 	},
-	name: 'Source/Decorator',
-	out: 'Thymeleaf-Layout-Dialect.js'
+	include: 'requirejs',
+
+	// Layout dialect modules
+	baseUrl: 'Source/',
+	name: 'decorator',
+	out: 'thymeleaf-layout-dialect.js'
 });
