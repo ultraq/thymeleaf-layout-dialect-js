@@ -34,13 +34,22 @@ module.exports = function(grunt) {
 					mainConfigFile: 'Config.js'
 				}
 			}
+		},
+
+		// Watch configuration
+		watch: {
+			scripts: {
+				files: 'Source/*.js',
+				tasks: 'requirejs'
+			}
 		}
 	});
 
 	// Load plugins
 	grunt.loadNpmTasks('grunt-bower-requirejs');
 	grunt.loadNpmTasks('grunt-contrib-requirejs');
+	grunt.loadNpmTasks('grunt-contrib-watch');
 
-	// Define tasks
-	grunt.registerTask('default', ['bower', 'requirejs']);
+	// Define additional tasks
+	grunt.registerTask('default', ['requirejs']);
 };

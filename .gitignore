@@ -4,6 +4,7 @@
 /node_modules
 
 # Eclipse files/directories
+/.settings
 .project
 
 # IntelliJ IDEA files/directories

@@ -23,14 +23,14 @@ require.config({
 
 	// Dependencies
 	paths: {
-		domready: '../bower_components/domready/ready',
-		jquery: '../bower_components/jquery/jquery',
+		domready:  '../bower_components/domready/ready',
+		jquery:    '../bower_components/jquery/jquery',
 		requirejs: '../bower_components/requirejs/require'
 	},
 	include: 'requirejs',
 
 	// Layout dialect modules
 	baseUrl: 'Source/',
-	name: 'decorator',
+	name: 'DecoratorProcessor',
 	out: 'thymeleaf-layout-dialect.js'
 });
