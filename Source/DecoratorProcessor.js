@@ -27,6 +27,8 @@ define(['domready', 'jquery'], function(domready, jquery) {
 	'use strict';
 
 	var ATTRIBUTE_LAYOUT_DECORATOR = 'layout:decorator';
+	var TEMPLATE_PREFIX = '';
+	var TEMPLATE_SUFFIX = '.html';
 
 	/**
 	 * Recursive search for an element, returning when the test in the given
@@ -40,10 +42,10 @@ define(['domready', 'jquery'], function(domready, jquery) {
 		if (test(element)) {
 			return element;
 		}
-		for (var i = 0; i < element.children.length; i++) {
-			var childElement = element.children[i];
-			if (test(childElement)) {
-				return childElement;
+		for (var i = 0; i < element.children().length; i++) {
+			var result = findElement(element.children[i], test);
+			if (result) {
+				return;
 			}
 		}
 		return null;
@@ -64,14 +66,11 @@ define(['domready', 'jquery'], function(domready, jquery) {
 			});
 			if (decoratorElement) {
 				var decoratorName = decoratorElement.getAttribute(ATTRIBUTE_LAYOUT_DECORATOR);
-				if (!decoratorName.endsWith('.html')) {
-					decoratorName += '.html';
-				}
 
 				// Load the document from the filesystem
-				jquery.get(decoratorName)
+				jquery.ajax(decoratorName, { dataType: 'html' })
 					.done(function(data) {
-						
+						console.log('Layout found');
 					})
 					.fail(function(data) {
 						console.log('Unable to load ' + decoratorElement + ' from the file system');
