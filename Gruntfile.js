@@ -25,8 +25,10 @@ module.exports = function(grunt) {
 
 		// RequireJS optimizer
 		requirejs: {
-			options: {
-				mainConfigFile: 'build.js'
+			optimize: {
+				options: {
+					mainConfigFile: 'build.js'
+				}
 			}
 		},
 
@@ -44,7 +46,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-shell');
 
 	// Define additional tasks
-	grunt.registerTask('bower-install', ['shell:bower-install']);
 	grunt.registerTask('build', ['jshint', 'requirejs']);
-	grunt.registerTask('default', ['bower-install', 'build']);
+	grunt.registerTask('default', ['shell:bower-install', 'build']);
 };
