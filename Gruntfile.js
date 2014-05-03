@@ -10,7 +10,7 @@ module.exports = function(grunt) {
 
 		// Extra command-line tasks
 		shell: {
-			bowerInstall: {
+			'bower-install': {
 				command: 'bower install'
 			}
 		},
@@ -20,26 +20,20 @@ module.exports = function(grunt) {
 			options: {
 				jshintrc: true
 			},
-			scripts: {
-				src: sourceFiles
-			}
+			files: sourceFiles
 		},
 
 		// RequireJS optimizer
 		requirejs: {
-			optimize: {
-				options: {
-					mainConfigFile: 'build.js'
-				}
+			options: {
+				mainConfigFile: 'build.js'
 			}
 		},
 
 		// Watch configuration
 		watch: {
-			scripts: {
-				files: sourceFiles,
-				tasks: ['jshint', 'requirejs']
-			}
+			files: sourceFiles,
+			tasks: ['build']
 		}
 	});
 
@@ -50,6 +44,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-shell');
 
 	// Define additional tasks
-	grunt.registerTask('bower-install', ['shell:bowerInstall']);
-	grunt.registerTask('default', ['bower-install', 'jshint', 'requirejs']);
+	grunt.registerTask('bower-install', ['shell:bower-install']);
+	grunt.registerTask('build', ['jshint', 'requirejs']);
+	grunt.registerTask('default', ['bower-install', 'build']);
 };
