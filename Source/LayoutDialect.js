@@ -1,12 +1,12 @@
-/*
+/* 
  * Copyright 2013, Emanuel Rabina (http://www.ultraq.net.nz/)
- *
+ * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -14,23 +14,15 @@
  * limitations under the License.
  */
 
-require.config({
+/**
+ * Configuration of the layout dialect for use with Thymol.
+ * 
+ * @author Emanuel Rabina
+ */
+define(['thymol', 'DecoratorProcessor'], function(thymol, decoratorProcessor) {
+	'use strict';
 
-	// Optimization config
-	optimize: 'none',
-	generateSourceMaps: true,
-	preserveLicenseComments: true,
-
-	// Dependencies
-	paths: {
-		domready:  '../bower_components/domready/ready',
-		jquery:    '../bower_components/jquery/jquery',
-		requirejs: '../bower_components/requirejs/require'
-	},
-	include: 'requirejs',
-
-	// Layout dialect modules
-	baseUrl: 'Source/',
-	name: 'DecoratorProcessor',
-	out: 'thymeleaf-layout-dialect.js'
+	return {
+		
+	};
 });
