@@ -19,10 +19,31 @@
  * 
  * @author Emanuel Rabina
  */
-define(['thymol', 'DecoratorProcessor'], function(thymol, decoratorProcessor) {
-	'use strict';
+define(['head', 'thymol', 'FragmentProcessor', 'decorator/DecoratorProcessor'],
+	function(head, thymol, FragmentProcessor, DecoratorProcessor) {
+		'use strict';
 
-	return {
-		
-	};
-});
+		var LayoutDialect = {
+			prefix: 'layout',
+			processors: [
+				DecoratorProcessor,
+				FragmentProcessor
+			]
+		};
+
+		// Register the Layout dialect with Thymol
+		function register() {
+			thymol.configurePreExecution(function() {
+				thymol.addDialect(LayoutDialect);
+			});
+		}
+		if (head) {
+			head.ready(register);
+		}
+		else {
+			register();
+		}
+
+		return LayoutDialect;
+	}
+);

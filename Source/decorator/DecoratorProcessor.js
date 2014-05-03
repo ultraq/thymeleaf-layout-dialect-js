@@ -17,15 +17,11 @@
 /**
  * Emulates what DecoratorProcessor in the Layout Dialect does in Thymeleaf, for
  * a prototyping environment, ie: in-browser only.
- *
+ * 
  * @author Emanuel Rabina
  */
-define(['domready', 'jquery'], function(domready, jquery) {
+define(['jquery', 'thymol'], function(jquery, thymol) {
 	'use strict';
-
-	var ATTRIBUTE_LAYOUT_DECORATOR = 'layout:decorator';
-	var TEMPLATE_PREFIX = '';
-	var TEMPLATE_SUFFIX = '.html';
 
 	/**
 	 * Recursive search for an element, returning when the test in the given
@@ -48,40 +44,32 @@ define(['domready', 'jquery'], function(domready, jquery) {
 		return null;
 	}
 
-	var decorator = {
+	var DecoratorProcessor = {
+		name: 'decorator',
 
 		/**
-		 * Performs decoration of the document.
+		 * Locates the decorator page specified by the layout attribute and applies
+		 * it to the current page being processed.
 		 * 
-		 * @param document
+		 * @param element
+		 * @param attribute
+		 * @param thymolAttribute
+		 * @returns {boolean} `true` since this modifies the document structure.
 		 */
-		decorate: function(document) {
+		process: function(element, attribute, thymolAttribute) {
 
-			// Look for the layout:decorator attribute
-			var decoratorElement = findElement(document.documentElement, function(element) {
-				return element.hasAttribute(ATTRIBUTE_LAYOUT_DECORATOR);
-			});
-			if (decoratorElement) {
-				var decoratorName = decoratorElement.getAttribute(ATTRIBUTE_LAYOUT_DECORATOR);
+			// Locate the decorator page
+			var decoratorName = element.getAttribute(attribute.name);
 
-				// Load the document from the filesystem
-				jquery.ajax(decoratorName, { dataType: 'html' })
-					.done(function(data) {
-						console.log('Layout found');
-					})
-					.fail(function(data) {
-						console.log('Unable to load ' + decoratorElement + ' from the file system');
-					});
-			}
+			// Load the document from the filesystem
+			jquery.ajax(decoratorName, { dataType: 'html' })
+				.done(function(data) {
+					console.log('Layout found');
+				})
+				.fail(function(data) {
+					console.log('Unable to load ' + decoratorName + ' from the file system');
+				});
 		}
 	};
-
-	/**
-	 * Run the decorator when the document has been loaded.
-	 */
-	domready(function() {
-		decorator.decorate(document);
-	});
-
-	return decorator;
+	return DecoratorProcessor;
 });
