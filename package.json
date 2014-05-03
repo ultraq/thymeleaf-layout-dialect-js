@@ -8,11 +8,12 @@
 		"type": "git",
 		"url": "https://github.com/ultraq/thymeleaf-layout-dialect-js"
 	},
+	"private": true,
 	"devDependencies": {
 		"grunt": "0.4.1",
-		"grunt-bower-requirejs": "0.7.1",
 		"grunt-contrib-jshint": "0.7.2",
 		"grunt-contrib-requirejs": "0.4.1",
-		"grunt-contrib-watch": "0.5.3"
+		"grunt-contrib-watch": "0.5.3",
+		"grunt-shell": "0.7.0"
 	}
 }

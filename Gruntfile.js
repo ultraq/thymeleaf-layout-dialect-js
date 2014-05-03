@@ -1,37 +1,35 @@
-/*
- * Copyright 2013, Emanuel Rabina (http://www.ultraq.net.nz/)
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 
 module.exports = function(grunt) {
+	'use strict';
+
+	var sourceFiles = 'Source/**/*.js';
 
 	// Project configuration
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
 
-		// Bower package manager
-		bower: {
-			target: {
-				rjsConfig: 'Config.js'
+		// Extra command-line tasks
+		shell: {
+			bowerInstall: {
+				command: 'bower install'
+			}
+		},
+
+		// JSHint configuration
+		jshint: {
+			options: {
+				jshintrc: true
+			},
+			scripts: {
+				src: sourceFiles
 			}
 		},
 
 		// RequireJS optimizer
 		requirejs: {
-			compile: {
+			optimize: {
 				options: {
-					mainConfigFile: 'Config.js'
+					mainConfigFile: 'build.js'
 				}
 			}
 		},
@@ -39,17 +37,19 @@ module.exports = function(grunt) {
 		// Watch configuration
 		watch: {
 			scripts: {
-				files: 'Source/*.js',
-				tasks: 'requirejs'
+				files: sourceFiles,
+				tasks: ['jshint', 'requirejs']
 			}
 		}
 	});
 
 	// Load plugins
-	grunt.loadNpmTasks('grunt-bower-requirejs');
+	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-requirejs');
 	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-shell');
 
 	// Define additional tasks
-	grunt.registerTask('default', ['requirejs']);
+	grunt.registerTask('bower-install', ['shell:bowerInstall']);
+	grunt.registerTask('default', ['bower-install', 'jshint', 'requirejs']);
 };

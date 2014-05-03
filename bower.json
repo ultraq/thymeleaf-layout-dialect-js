@@ -5,14 +5,14 @@
 	"author": "Emanuel Rabina <emanuelrabina@gmail.com> (http://www.ultraq.net.nz/)",
 	"license": "Apache License 2.0",
 	"private": true,
-	"main": "Thymeleaf-Layout-Dialect.js",
+	"main": "thymeleaf-layout-dialect.js",
 	"ignore": [
 		"**/.*",
 		"Source"
 	],
 	"dependencies": {
 		"domready": "latest",
-		"jquery": "2.0.3",
+		"headjs": "1.0.3",
 		"requirejs": "2.1.9"
 	}
 }
