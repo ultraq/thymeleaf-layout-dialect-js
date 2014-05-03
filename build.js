@@ -8,9 +8,8 @@ require.config({
 
 	// Dependencies
 	paths: {
-		domready:  '../bower_components/domready/ready',
-		head:      '../bower_components/head/head',
-		jquery:    'empty:',
+		head:      '../bower_components/headjs/dist/1.0.0/head',
+		jquery:    '../bower_components/jquery/dist/jquery',
 		requirejs: '../bower_components/requirejs/require',
 		thymol:    'empty:'
 	},
