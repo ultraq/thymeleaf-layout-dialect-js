@@ -19,9 +19,10 @@
  * 
  * @author Emanuel Rabina
  */
-define(['head', 'thymol', 'FragmentProcessor', 'decorator/DecoratorProcessor'],
-	function(head, thymol, FragmentProcessor, DecoratorProcessor) {
+define(['thymol', 'FragmentProcessor', 'decorator/DecoratorProcessor'],
+	function(thymol, FragmentProcessor, DecoratorProcessor) {
 		'use strict';
+		/* global head */
 
 		var LayoutDialect = {
 			prefix: 'layout',
