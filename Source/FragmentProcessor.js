@@ -20,11 +20,12 @@
  * 
  * @author Emanuel Rabina
  */
-define(['thymol'], function(thymol) {
+define(function() {
 	'use strict';
 
 	var FragmentProcessor = {
 		name: 'fragment',
+		precedence: 1,
 
 		/**
 		 * Includes or replaces the content of fragments into the corresponding

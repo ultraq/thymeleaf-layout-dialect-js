@@ -20,7 +20,7 @@
  * 
  * @author Emanuel Rabina
  */
-define(['jquery', 'thymol'], function(jquery, thymol) {
+define(function() {
 	'use strict';
 
 	/**
@@ -46,6 +46,7 @@ define(['jquery', 'thymol'], function(jquery, thymol) {
 
 	var DecoratorProcessor = {
 		name: 'decorator',
+		precedence: 0,
 
 		/**
 		 * Locates the decorator page specified by the layout attribute and applies
@@ -62,7 +63,7 @@ define(['jquery', 'thymol'], function(jquery, thymol) {
 			var decoratorName = element.getAttribute(attribute.name);
 
 			// Load the document from the filesystem
-			jquery.ajax(decoratorName, { dataType: 'html' })
+			$.get(decoratorName)
 				.done(function(data) {
 					console.log('Layout found');
 				})
