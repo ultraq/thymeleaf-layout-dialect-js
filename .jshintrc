@@ -6,5 +6,5 @@
 	"strict": true,
 	"trailing": true,
 	"undef": true,
-	"predef": [ "$", "console", "define" ]
+	"predef": [ "$", "console", "define", "thymol" ]
 }

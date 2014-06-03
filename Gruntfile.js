@@ -20,22 +20,42 @@ module.exports = function(grunt) {
 			options: {
 				jshintrc: true
 			},
-			files: sourceFiles
+			all: {
+				files: sourceFiles
+			}
 		},
 
 		// RequireJS optimizer
 		requirejs: {
 			optimize: {
 				options: {
-					mainConfigFile: 'build.js'
+					optimize: 'uglify2',
+					uglify2: {
+						mangle: false
+					},
+					generateSourceMaps: true,
+					preserveLicenseComments: false,
+					baseUrl: 'Source/',
+					paths: {
+						requirejs: '../bower_components/requirejs/require',
+						thymol:    '../bower_components/thymol/dist/thymol'
+					},
+					include: 'requirejs',
+					name: 'LayoutDialect',
+					out: 'thymeleaf-layout-dialect.min.js'
 				}
 			}
 		},
 
 		// Watch configuration
 		watch: {
-			files: sourceFiles,
-			tasks: ['build']
+			options: {
+				atBegin: true
+			},
+			js: {
+				files: sourceFiles,
+				tasks: ['newer:jshint:all', 'requirejs']
+			}
 		}
 	});
 
@@ -43,6 +63,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-requirejs');
 	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-newer');
 	grunt.loadNpmTasks('grunt-shell');
 
 	// Define additional tasks

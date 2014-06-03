@@ -25,24 +25,16 @@ define(['FragmentProcessor', 'decorator/DecoratorProcessor'],
 
 		var LayoutDialect = {
 			prefix: 'layout',
-			processors: [
+			attributeProcessors: [
 				DecoratorProcessor,
 				FragmentProcessor
 			]
 		};
 
 		// Register the Layout dialect with Thymol
-		function register() {
-			window.thymol.configurePreExecution(function() {
-				window.thymol.addDialect(LayoutDialect);
-			});
-		}
-		if (window.head) {
-			window.head.ready(register);
-		}
-		else {
-			register();
-		}
+		thymol.configurePreExecution(function() {
+			thymol.addDialect(LayoutDialect);
+		});
 
 		return LayoutDialect;
 	}
