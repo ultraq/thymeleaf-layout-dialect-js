@@ -1,19 +1,26 @@
 {
-	"name": "thymeleaf-layout-dialect",
-	"version": "0.1.0",
+	"name": "thymeleaf-layout-dialect-js",
 	"description": "Thymeleaf Layout Dialect for in-browser prototyping.",
-	"author": "Emanuel Rabina <emanuelrabina@gmail.com> (http://www.ultraq.net.nz/)",
-	"license": "Apache License 2.0",
-	"private": true,
-	"main": "thymeleaf-layout-dialect.js",
-	"ignore": [
-		"**/.*",
-		"Source"
+	"authors": [
+		"Emanuel Rabina <emanuelrabina@gmail.com> (http://www.ultraq.net.nz/)"
 	],
+	"license": "Apache License 2.0",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/ultraq/thymeleaf-layout-dialect-js"
+	},
+	"moduleType": [
+		"es6"
+	],
+	"keywords": [
+		"thymeleaf",
+		"layout",
+		"dialect",
+		"js",
+		"javascript"
+	],
+	"ignore": [],
 	"dependencies": {
-		"headjs": "1.0.3",
-		"jquery": "2.1.1",
-		"requirejs": "2.1.9",
-		"thymol": "latest"
+		"dumb-query-selector": "^2.0.0"
 	}
 }

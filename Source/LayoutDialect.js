@@ -14,28 +14,14 @@
  * limitations under the License.
  */
 
+import * as DOMUtils from './util/DOMUtils';
+
 /**
- * Configuration of the layout dialect for use with Thymol.
+ * Main script for kicking-off the layout dialect.
  * 
  * @author Emanuel Rabina
  */
-define(['FragmentProcessor', 'decorator/DecoratorProcessor'],
-	function(FragmentProcessor, DecoratorProcessor) {
-		'use strict';
 
-		var LayoutDialect = {
-			prefix: 'layout',
-			attributeProcessors: [
-				DecoratorProcessor,
-				FragmentProcessor
-			]
-		};
-
-		// Register the Layout dialect with Thymol
-		thymol.configurePreExecution(function() {
-			thymol.addDialect(LayoutDialect);
-		});
-
-		return LayoutDialect;
-	}
-);
+// Start by running the decorator processor
+var rootEl = document.firstElementChild;
+var decorator = DOMUtils.getThymeleafAttributeValue(rootEl, 'layout', 'decorator');

@@ -2,10 +2,7 @@
 # JavaScript stuff
 /bower_components
 /node_modules
-
-# Eclipse files/directories
-/.settings
-.project
+npm-debug.log
 
 # IntelliJ IDEA files/directories
 /.idea
