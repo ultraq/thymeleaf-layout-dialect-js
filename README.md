@@ -2,6 +2,8 @@
 Thymeleaf Layout Dialect JS
 ===========================
 
+[![Build Status](https://travis-ci.org/ultraq/thymeleaf-layout-dialect-js.svg?branch=master)](https://travis-ci.org/ultraq/thymeleaf-layout-dialect-js)
+
 In-browser version of the [Thymeleaf Layout Dialect](https://github.com/ultraq/thymeleaf-layout-dialect),
 used for static prototyping.
 
