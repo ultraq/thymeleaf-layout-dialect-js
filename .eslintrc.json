@@ -1,0 +1,26 @@
+{
+	"extends": "eslint:recommended",
+	"parserOptions": {
+		"ecmaVersion": 6,
+		"sourceType": "module"
+	},
+	"env": {
+		"browser": true,
+		"es6": true
+	},
+	"rules": {
+		"brace-style": ["error", "stroustrup"],
+		"comma-dangle": "error",
+		"no-unused-vars": ["error", { "args": "none" }],
+		"quotes": ["error", "single", "avoid-escape"],
+		"space-before-function-paren": ["error", "never"],
+		"valid-jsdoc": ["error", {
+			"requireParamDescription": false,
+			"requireReturn": false,
+			"requireReturnDescription": false,
+			"prefer": {
+				"return": "return"
+			}
+		}]
+	}
+}

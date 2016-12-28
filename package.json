@@ -10,12 +10,18 @@
 	},
 	"scripts": {
 		"prepublish": "bower install",
+		"postinstall": "rm -rf node_modules/webpack/node_modules/uglify-js",
 		"lint": "eslint Source/**/*.js",
-		"test": "npm run lint"
+		"build": "webpack"
 	},
 	"devDependencies": {
-		"bower": "~1.7.7",
-		"eslint": "^2.0.0"
+		"babel-core": "^6.21.0",
+		"babel-loader": "^6.2.10",
+		"babel-plugin-transform-es2015-modules-commonjs": "^6.18.0",
+		"bower": "^1.7.7",
+		"eslint": "^3.12.2",
+		"uglify-js": "https://github.com/mishoo/UglifyJS2.git#harmony",
+		"webpack": "^1.14.0"
 	},
 	"private": true
 }

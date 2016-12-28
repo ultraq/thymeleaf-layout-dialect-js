@@ -19,6 +19,7 @@
 		"js",
 		"javascript"
 	],
+	"main": "thymeleaf-layout-dialect.js",
 	"ignore": [],
 	"dependencies": {
 		"dumb-query-selector": "^2.0.0"

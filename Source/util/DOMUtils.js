@@ -32,7 +32,7 @@
  * @return {Function} A format string function.
  */
 function format(template, ...keys) {
-	return function (...values) {
+	return function(...values) {
 		var result = template[0];
 		keys.forEach((key, index) => {
 			result.push(values[key], template[index + 1]);

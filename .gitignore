@@ -7,3 +7,6 @@ npm-debug.log
 # IntelliJ IDEA files/directories
 /.idea
 *.iml
+
+# Generated files
+thymeleaf-layout-dialect.js*
