@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {getThymeleafAttributeValue} from './util/DOMUtils';
+import DecorateProcessor from './decorator/DecorateProcessor.js';
 
 /**
  * Main script for kicking-off the layout dialect.
@@ -22,6 +22,4 @@ import {getThymeleafAttributeValue} from './util/DOMUtils';
  * @author Emanuel Rabina
  */
 
-// Start by running the decorator processor
-var rootEl = document.firstElementChild;
-var decorator = getThymeleafAttributeValue(rootEl, 'layout', 'decorator');
+new DecorateProcessor().process(document.firstElementChild);

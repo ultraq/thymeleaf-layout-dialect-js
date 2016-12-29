@@ -20,32 +20,11 @@
  * @author Emanuel Rabina
  */
 
-//const XML_ATTRIBUTE_TEMPLATE = '${prefix}:${name}';
-//const DATA_ATTRIBUTE_TEMPLATE = 'data-${prefix}-${name}';
-
-/**
- * Takes a template string and returns a format string function to fill out the
- * template string.
- * 
- * @param {String} template
- * @param {Array} keys
- * @return {Function} A format string function.
- */
-function format(template, ...keys) {
-	return function(...values) {
-		var result = template[0];
-		keys.forEach((key, index) => {
-			result.push(values[key], template[index + 1]);
-		});
-		return result.join('');
-	};
-}
-
 /**
  * Returns the value of a Thymeleaf attribute processor.  Checks for both the
  * XML and data attribute variants.
  * 
- * @param {HTMLElement} element
+ * @param {Element} element
  * @param {String} prefix
  * @param {String} name
  * @return {String} Value of a matching Thymeleaf attribute, or `null` if no
@@ -53,6 +32,6 @@ function format(template, ...keys) {
  */
 export function getThymeleafAttributeValue(element, prefix, name) {
 
-	return element.getAttribute(format`${0}:${1}`(prefix, name)) ||
-	       element.getAttribute(format`data-${0}-${1}`(prefix, name));
+	return element.getAttribute(`${prefix}:${name}`) ||
+	       element.getAttribute(`data-${prefix}-${name}`);
 }

@@ -1,5 +1,5 @@
 {
-	"name": "thymeleaf-layout-dialect-js",
+	"name": "thymeleaf-layout-dialect",
 	"description": "Thymeleaf Layout Dialect for in-browser prototyping.",
 	"authors": [
 		"Emanuel Rabina <emanuelrabina@gmail.com> (http://www.ultraq.net.nz/)"
