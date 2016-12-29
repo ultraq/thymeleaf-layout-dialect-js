@@ -11,8 +11,9 @@
 	"scripts": {
 		"prepublish": "bower install",
 		"postinstall": "rm -rf node_modules/webpack/node_modules/uglify-js",
+		"lint": "eslint Source",
 		"build": "gulp",
-		"test": "gulp"
+		"test": "npm run lint && gulp"
 	},
 	"devDependencies": {
 		"babel-core": "^6.21.0",
