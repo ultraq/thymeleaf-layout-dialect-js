@@ -11,6 +11,7 @@
 	"rules": {
 		"brace-style": ["error", "stroustrup"],
 		"comma-dangle": "error",
+		"no-console": "off",
 		"no-mixed-spaces-and-tabs": ["error", "smart-tabs"],
 		"no-unused-vars": ["error", { "args": "none" }],
 		"quotes": ["error", "single", "avoid-escape"],

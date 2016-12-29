@@ -14,7 +14,10 @@
  * limitations under the License.
  */
 
-import {getThymeleafAttributeValue} from '../models/Utilities.js';
+import {getThymeleafAttributeValue} from '../utilities/Dom.js';
+import {fetchHtmlAsDom}             from '../utilities/Fetch.js';
+
+const FRAGMENT_EXPRESSION = /~\{(.+)\}/;
 
 /**
  * Emulates what `DecorateProcessor.groovy` does, but for a prototyping
@@ -31,16 +34,23 @@ export default class DecorateProcessor {
 	 */
 	process(element) {
 
-		const FRAGMENT_EXPRESSION = /~\{(.+)\}/;
-
 		// Find the layout template
 		let layoutTemplateExpression = getThymeleafAttributeValue(element, 'layout', 'decorate');
+		if (!layoutTemplateExpression) {
+			console.warn('No layout:decorate or data-layout-decorate attribute found on the <html> element');
+			return;
+		}
 		let layoutTemplateMatch = layoutTemplateExpression.match(FRAGMENT_EXPRESSION);
 		let layoutTemplateName = layoutTemplateMatch[1];
+		console.log(`Layout template: ${layoutTemplateName}`);
 
-		console.log(`Layout template: ${layoutTemplateName}`); // eslint-disable-line no-console
-
-		// Retrieve the 
-
+		// Retrieve the layout template
+		fetchHtmlAsDom(layoutTemplateName)
+			.then(function(layoutTemplate) {
+				console.log('hi');
+			})
+			.catch(function(error) {
+				console.warn(`Unable to fetch layout template at ${error.response.url}`);
+			});
 	}
 }

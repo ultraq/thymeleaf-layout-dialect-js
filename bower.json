@@ -22,6 +22,7 @@
 	"main": "thymeleaf-layout-dialect.js",
 	"ignore": [],
 	"dependencies": {
-		"dumb-query-selector": "^2.0.0"
+		"dumb-query-selector": "^2.0.0",
+		"extend": "https://unpkg.com/extend@^3.0.0/index.js"
 	}
 }

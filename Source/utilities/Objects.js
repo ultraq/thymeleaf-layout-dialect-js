@@ -1,5 +1,5 @@
 /* 
- * Copyright 2013, Emanuel Rabina (http://www.ultraq.net.nz/)
+ * Copyright 2016, Emanuel Rabina (http://www.ultraq.net.nz/)
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,12 +14,22 @@
  * limitations under the License.
  */
 
-import DecorateProcessor from './decorators/DecorateProcessor.js';
+import extend from 'extend';
 
 /**
- * Main script for kicking-off the layout dialect.
+ * A collection of object utilities.
  * 
  * @author Emanuel Rabina
  */
 
-new DecorateProcessor().process(document.firstElementChild);
+/**
+ * Wraps the `extend` module with the deep cloning on as default.
+ * 
+ * @param {Object} target
+ * @param {Object} source
+ * @return {Object} The modified `target` object.
+ */
+export function merge(target, ...source) {
+
+	return extend.apply(null, [true, target].concat(source));
+}
