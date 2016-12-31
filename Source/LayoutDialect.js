@@ -15,11 +15,22 @@
  */
 
 import DecorateProcessor from './decorators/DecorateProcessor.js';
+import FragmentProcessor from './fragments/FragmentProcessor.js';
+
+import {$$} from 'dumb-query-selector';
 
 /**
  * Main script for kicking-off the layout dialect.
  * 
  * @author Emanuel Rabina
  */
+document.addEventListener('DOMContentLoaded', function() {
+	let context = {};
+	new DecorateProcessor().process(context, document);
 
-new DecorateProcessor().process(document.firstElementChild);
+	// Skip straight to the layout:fragment elements
+	let fragmentsToProcess = $$('[layout\\:fragment], [data-layout-fragment]');
+	fragmentsToProcess.forEach(fragmentToProcess => {
+		new FragmentProcessor().process(context, fragmentToProcess);
+	})
+});

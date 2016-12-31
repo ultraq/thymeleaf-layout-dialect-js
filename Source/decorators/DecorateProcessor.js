@@ -17,6 +17,8 @@
 import {getThymeleafAttributeValue} from '../utilities/Dom.js';
 import {fetchHtmlAsDom}             from '../utilities/Fetch.js';
 
+import {$$} from 'dumb-query-selector';
+
 const FRAGMENT_EXPRESSION = /~\{(.+)\}/;
 
 /**
@@ -30,12 +32,14 @@ export default class DecorateProcessor {
 	/**
 	 * Locates the template to decorate and replaces the current document with it.
 	 * 
-	 * @param {Element} element
+	 * @param {Object} context
+	 * @param {Document} document
 	 */
-	process(element) {
+	process(context, document) {
 
 		// Find the layout template
-		let layoutTemplateExpression = getThymeleafAttributeValue(element, 'layout', 'decorate');
+		let htmlEl = document.firstElementChild;
+		let layoutTemplateExpression = getThymeleafAttributeValue(htmlEl, 'layout', 'decorate');
 		if (!layoutTemplateExpression) {
 			console.warn('No layout:decorate or data-layout-decorate attribute found on the <html> element');
 			return;
@@ -46,9 +50,22 @@ export default class DecorateProcessor {
 
 		// Retrieve the layout template
 		fetchHtmlAsDom(layoutTemplateName)
+
+			// Decorate the template
 			.then(function(layoutTemplate) {
-				console.log('hi');
+
+				// Get all the fragments of the current template
+				let fragments = $$('[layout\\:fragment], [data-layout-fragment]', document);
+				context.fragments = fragments;
+
+				// Replace the current template with the layout template
+				while (document.firstChild) {
+					document.removeChild(document.firstChild);
+				}
+				document.appendChild(layoutTemplate.firstElementChild);
 			})
+
+			// Report error
 			.catch(function(error) {
 				console.warn(`Unable to fetch layout template at ${error.response.url}`);
 			});
