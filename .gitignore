@@ -8,5 +8,5 @@ npm-debug.log
 /.idea
 *.iml
 
-# Generated files
-thymeleaf-layout-dialect.js*
+# Generated files that I don't want to commit
+thymeleaf-layout-dialect.js.map
