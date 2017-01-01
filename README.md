@@ -3,6 +3,7 @@ Thymeleaf Layout Dialect JS
 ===========================
 
 [![Build Status](https://travis-ci.org/ultraq/thymeleaf-layout-dialect-js.svg?branch=master)](https://travis-ci.org/ultraq/thymeleaf-layout-dialect-js)
+[![Bower](https://img.shields.io/bower/v/thymeleaf-layout-dialect.svg?maxAge=3600)](http://bower.io/search/?q=thymeleaf-layout-dialect)
 [![GitHub Release](https://img.shields.io/github/release/ultraq/thymeleaf-layout-dialect-js.svg?maxAge=3600)](https://github.com/ultraq/thymeleaf-layout-dialect-js/releases/latest)
 [![License](https://img.shields.io/github/license/ultraq/thymeleaf-layout-dialect-js.svg?maxAge=2592000)](https://github.com/ultraq/thymeleaf-layout-dialect-js/blob/master/LICENSE.txt)
 
