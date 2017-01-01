@@ -9,14 +9,30 @@ Thymeleaf Layout Dialect JS
 In-browser version of the [Thymeleaf Layout Dialect](https://github.com/ultraq/thymeleaf-layout-dialect),
 used for static prototyping.
 
+**STILL UNDER DEVELOPMENT**
 
-Still under development
------------------------
 
-This project is still under development.  Current goals include:
+Installation
+------------
 
- - working in tandem with 2.x of the layout dialect (the Thymeleaf 3 branch)
- - process the `decorate` and `fragment` directives first to get overall
-   layouts working
- - start by working using http on localhost (ie: work on the `file:///` problem
-   later)
+A browser that supports the [fetch API](http://caniuse.com/#feat=fetch) is
+currently required.  Future versions may be bundled with the necessary polyfills
+for those browsers that don't support it.
+
+Many front-end development projects these days use a mock server for rapid
+development of static assets, eg: webpack dev server, or Express.js.  This
+project currently works using those mock servers as it gets around many of the
+security restrictions on local file access, which this script needs to be able
+to fetch your layout templates.  This may change in future.
+
+(download from Bower instructions here)
+
+With those in place, add the following script line somewhere in your template,
+preferably the `<head>` section:
+
+```html
+<script src="thymeleaf-layout-dialect/thymeleaf-layout-dialect.js" th:remove="all"></script>
+```
+
+The `th:remove` directive is there so that when your template is processed for
+real by your app server, Thymeleaf will remove this line.

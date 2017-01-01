@@ -19,6 +19,8 @@ import FragmentProcessor from './fragments/FragmentProcessor.js';
 
 import {$$} from 'dumb-query-selector';
 
+const DIALECT_PREFIX = 'layout';
+
 /**
  * Main script for kicking-off the layout dialect.
  * 
@@ -26,11 +28,16 @@ import {$$} from 'dumb-query-selector';
  */
 document.addEventListener('DOMContentLoaded', function() {
 	let context = {};
-	new DecorateProcessor().process(context, document);
 
-	// Skip straight to the layout:fragment elements
-	let fragmentsToProcess = $$('[layout\\:fragment], [data-layout-fragment]');
-	fragmentsToProcess.forEach(fragmentToProcess => {
-		new FragmentProcessor().process(context, fragmentToProcess);
-	})
+	new DecorateProcessor().process(context, document.documentElement)
+
+		// Forced processing of layout:fragment elements
+		.then(function() {
+			let selector = `[${DIALECT_PREFIX}\\:${FragmentProcessor.PROCESSOR_NAME}],
+	                [data-${DIALECT_PREFIX}-${FragmentProcessor.PROCESSOR_NAME}]`;
+			let fragmentsToProcess = $$(selector);
+			fragmentsToProcess.forEach(fragmentToProcess => {
+				new FragmentProcessor().process(context, fragmentToProcess);
+			})
+		});
 });

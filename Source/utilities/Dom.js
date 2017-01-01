@@ -35,3 +35,18 @@ export function getThymeleafAttributeValue(element, prefix, name) {
 	return element.getAttribute(`${prefix}:${name}`) ||
 	       element.getAttribute(`data-${prefix}-${name}`);
 }
+
+/**
+ * Replaces one element with another.
+ * 
+ * @param {Element} target Element to replace.
+ * @param {Element} source Element to replace `target` with.
+ */
+export function replaceElement(target, source) {
+
+	let parent = target.parentNode;
+	while (parent.firstChild) {
+		parent.removeChild(parent.firstChild);
+	}
+	parent.appendChild(source);
+}

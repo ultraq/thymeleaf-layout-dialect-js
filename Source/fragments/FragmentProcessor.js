@@ -14,12 +14,18 @@
  * limitations under the License.
  */
 
+import {getThymeleafAttributeValue,
+        replaceElement}             from '../utilities/Dom.js';
+
+const DIALECT_PREFIX = 'layout';
+const PROCESSOR_NAME = 'fragment';
+
 /**
  * The fragment processor, used to mark areas for replacement in templates.
  * 
  * @author Emanuel Rabina
  */
-export default class FragmentProcessor {
+class FragmentProcessor {
 
 	/**
 	 * Replaces the contents of elements with fragments from surrounding
@@ -30,6 +36,16 @@ export default class FragmentProcessor {
 	 */
 	process(context, fragmentEl) {
 
-		
+		let {fragments} = context;
+		let fragmentName = getThymeleafAttributeValue(fragmentEl, DIALECT_PREFIX, PROCESSOR_NAME);
+
+		let matchingFragment = fragments[fragmentName];
+		if (matchingFragment) {
+			replaceElement(fragmentEl, matchingFragment);
+		}
 	}
 }
+
+FragmentProcessor.PROCESSOR_NAME = PROCESSOR_NAME;
+
+export default FragmentProcessor;

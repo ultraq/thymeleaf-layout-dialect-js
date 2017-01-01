@@ -14,10 +14,13 @@
  * limitations under the License.
  */
 
-import {getThymeleafAttributeValue} from '../utilities/Dom.js';
+import FragmentFinder               from '../fragments/FragmentFinder.js';
+import {getThymeleafAttributeValue,
+        replaceElement}             from '../utilities/Dom.js';
 import {fetchHtmlAsDom}             from '../utilities/Fetch.js';
 
-import {$$} from 'dumb-query-selector';
+const DIALECT_PREFIX = 'layout';
+const PROCESSOR_NAME = 'decorate';
 
 const FRAGMENT_EXPRESSION = /~\{(.+)\}/;
 
@@ -27,19 +30,20 @@ const FRAGMENT_EXPRESSION = /~\{(.+)\}/;
  * 
  * @author Emanuel Rabina
  */
-export default class DecorateProcessor {
+class DecorateProcessor {
 
 	/**
 	 * Locates the template to decorate and replaces the current document with it.
 	 * 
 	 * @param {Object} context
-	 * @param {Document} document
+	 * @param {Element} htmlEl
+	 * @return {Promise} A promise that is fulfilled once a 
 	 */
-	process(context, document) {
+	process(context, htmlEl) {
 
 		// Find the layout template
-		let htmlEl = document.firstElementChild;
-		let layoutTemplateExpression = getThymeleafAttributeValue(htmlEl, 'layout', 'decorate');
+		let layoutTemplateExpression = getThymeleafAttributeValue(htmlEl,
+			DIALECT_PREFIX, PROCESSOR_NAME);
 		if (!layoutTemplateExpression) {
 			console.warn('No layout:decorate or data-layout-decorate attribute found on the <html> element');
 			return;
@@ -48,26 +52,19 @@ export default class DecorateProcessor {
 		let layoutTemplateName = layoutTemplateMatch[1];
 		console.log(`Layout template: ${layoutTemplateName}`);
 
-		// Retrieve the layout template
-		fetchHtmlAsDom(layoutTemplateName)
-
-			// Decorate the template
+		// Retrieve the layout template, decorating it with the current template
+		return fetchHtmlAsDom(layoutTemplateName)
 			.then(function(layoutTemplate) {
 
 				// Get all the fragments of the current template
-				let fragments = $$('[layout\\:fragment], [data-layout-fragment]', document);
-				context.fragments = fragments;
+				context.fragments = new FragmentFinder().findFragments(htmlEl);
 
 				// Replace the current template with the layout template
-				while (document.firstChild) {
-					document.removeChild(document.firstChild);
-				}
-				document.appendChild(layoutTemplate.firstElementChild);
-			})
-
-			// Report error
-			.catch(function(error) {
-				console.warn(`Unable to fetch layout template at ${error.response.url}`);
+				replaceElement(htmlEl, layoutTemplate.firstElementChild);
 			});
 	}
 }
+
+DecorateProcessor.PROCESSOR_NAME = PROCESSOR_NAME;
+
+export default DecorateProcessor;
