@@ -18,7 +18,12 @@
 'use strict';
 
 const webpack = require('webpack');
+const yargs   = require('yargs');
+
 const path = require('path');
+
+let argv = yargs.argv;
+let isDev = !!argv.dev;
 
 module.exports = {
 	entry: './Source/LayoutDialect.js',
@@ -46,10 +51,11 @@ module.exports = {
 	plugins: [
 		new webpack.ResolverPlugin(
 			new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin('.bower.json', ['main'])
-		)/*,
+		)
+	].concat(isDev ? [
 		new webpack.optimize.UglifyJsPlugin({
 			mangle: false
-		})*/
-	],
-	devtool: '#source-map'
+		})
+	] : []),
+	devtool: isDev ? '#source-map' : ''
 };
