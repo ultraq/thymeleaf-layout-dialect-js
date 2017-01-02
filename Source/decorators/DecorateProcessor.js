@@ -37,31 +37,40 @@ class DecorateProcessor {
 	 * 
 	 * @param {Object} context
 	 * @param {Element} htmlEl
-	 * @return {Promise} A promise that is fulfilled once a 
+	 * @return {Promise} A promise that is fulfilled once the layout template has
+	 *   been applied.
 	 */
 	process(context, htmlEl) {
 
-		// Find the layout template
-		let layoutTemplateExpression = getThymeleafAttributeValue(htmlEl,
-			DIALECT_PREFIX, PROCESSOR_NAME);
-		if (!layoutTemplateExpression) {
-			console.warn('No layout:decorate or data-layout-decorate attribute found on the <html> element');
-			return;
-		}
-		let layoutTemplateMatch = layoutTemplateExpression.match(FRAGMENT_EXPRESSION);
-		let layoutTemplateName = layoutTemplateMatch[1];
-		console.log(`Layout template: ${layoutTemplateName}`);
+		return new Promise(function(resolve, reject) {
 
-		// Retrieve the layout template, decorating it with the current template
-		return fetchHtmlAsDom(layoutTemplateName)
-			.then(function(layoutTemplate) {
+			// Find the layout template
+			let layoutTemplateExpression = getThymeleafAttributeValue(htmlEl,
+				DIALECT_PREFIX, PROCESSOR_NAME);
+			if (!layoutTemplateExpression) {
+				console.warn('No layout:decorate or data-layout-decorate attribute found on the <html> element');
+				resolve();
+			}
+			let layoutTemplateMatch = layoutTemplateExpression.match(FRAGMENT_EXPRESSION);
+			let layoutTemplateName = layoutTemplateMatch[1];
 
-				// Get all the fragments of the current template
-				context.fragments = new FragmentFinder().findFragments(htmlEl);
+			// Retrieve the layout template, decorating it with the current template
+			fetchHtmlAsDom(layoutTemplateName)
+				.then(function(layoutTemplate) {
 
-				// Replace the current template with the layout template
-				replaceElement(htmlEl, layoutTemplate.firstElementChild);
-			});
+					// Get all the fragments of the current template
+					context.fragments = new FragmentFinder().findFragments(htmlEl);
+
+					// Replace the current template with the layout template
+					replaceElement(htmlEl, layoutTemplate.firstElementChild);
+
+					resolve();
+				})
+				.catch(function(error) {
+					console.warn(`Unable to retrieve layout at ${error.response.url}`);
+					resolve();
+				});
+		});
 	}
 }
 

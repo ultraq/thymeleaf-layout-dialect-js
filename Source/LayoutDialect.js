@@ -33,8 +33,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		// Forced processing of layout:fragment elements
 		.then(function() {
-			let selector = `[${DIALECT_PREFIX}\\:${FragmentProcessor.PROCESSOR_NAME}],
-	                [data-${DIALECT_PREFIX}-${FragmentProcessor.PROCESSOR_NAME}]`;
+			let selector = `[${DIALECT_PREFIX}\\:${FragmentProcessor.PROCESSOR_NAME}], ` +
+			               `[data-${DIALECT_PREFIX}-${FragmentProcessor.PROCESSOR_NAME}]`;
 			let fragmentsToProcess = $$(selector);
 			fragmentsToProcess.forEach(fragmentToProcess => {
 				new FragmentProcessor().process(context, fragmentToProcess);

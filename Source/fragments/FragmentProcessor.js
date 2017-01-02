@@ -37,11 +37,12 @@ class FragmentProcessor {
 	process(context, fragmentEl) {
 
 		let {fragments} = context;
-		let fragmentName = getThymeleafAttributeValue(fragmentEl, DIALECT_PREFIX, PROCESSOR_NAME);
-
-		let matchingFragment = fragments[fragmentName];
-		if (matchingFragment) {
-			replaceElement(fragmentEl, matchingFragment);
+		if (fragments) {
+			let fragmentName = getThymeleafAttributeValue(fragmentEl, DIALECT_PREFIX, PROCESSOR_NAME);
+			let matchingFragment = fragments[fragmentName];
+			if (matchingFragment) {
+				replaceElement(fragmentEl, matchingFragment);
+			}
 		}
 	}
 }
