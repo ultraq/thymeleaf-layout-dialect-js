@@ -1,6 +1,6 @@
 {
 	"name": "thymeleaf-layout-dialect",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"description": "Thymeleaf Layout Dialect for in-browser prototyping.",
 	"author": "Emanuel Rabina <emanuelrabina@gmail.com> (http://www.ultraq.net.nz/)",
 	"license": "Apache License 2.0",

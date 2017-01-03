@@ -2,6 +2,9 @@
 Changelog
 =========
 
+### 0.1.2
+ - Use `document.write` so that scripts get executed
+
 ### 0.1.1
  - Fixed to have more consistent handling of errors via Promise rejection
 
