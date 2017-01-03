@@ -43,19 +43,10 @@ module.exports = {
 			}
 		]
 	},
-	resolve: {
-		modulesDirectories: [
-			'bower_components'
-		]
-	},
-	plugins: [
-		new webpack.ResolverPlugin(
-			new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin('.bower.json', ['main'])
-		)
-	].concat(!isDev ? [
+	plugins: !isDev ? [
 		new webpack.optimize.UglifyJsPlugin({
 			mangle: false
 		})
-	] : []),
+	] : [],
 	devtool: isDev ? '#source-map' : ''
 };

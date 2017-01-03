@@ -9,9 +9,6 @@
 		"type": "git",
 		"url": "https://github.com/ultraq/thymeleaf-layout-dialect-js"
 	},
-	"moduleType": [
-		"es6"
-	],
 	"keywords": [
 		"thymeleaf",
 		"layout",
@@ -20,9 +17,5 @@
 		"javascript"
 	],
 	"main": "thymeleaf-layout-dialect.js",
-	"ignore": [],
-	"dependencies": {
-		"dumb-query-selector": "^2.0.0",
-		"extend": "https://unpkg.com/extend@^3.0.0/index.js"
-	}
+	"ignore": []
 }
