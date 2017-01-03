@@ -15,8 +15,7 @@
  */
 
 import FragmentFinder               from '../fragments/FragmentFinder.js';
-import {getThymeleafAttributeValue,
-        replaceElement}             from '../utilities/Dom.js';
+import {getThymeleafAttributeValue} from '../utilities/Dom.js';
 import {fetchHtmlAsDom}             from '../utilities/Fetch.js';
 
 const DIALECT_PREFIX = 'layout';
@@ -61,10 +60,16 @@ class DecorateProcessor {
 					// Get all the fragments of the current template
 					context.fragments = new FragmentFinder().findFragments(htmlEl);
 
-					// Replace the current template with the layout template
-					replaceElement(htmlEl, layoutTemplate.firstElementChild);
+					// Replace the current template with the layout template.  Uses
+					// document.write since that lets scripts in the new <head> section
+					// get executed.
+					// TODO: Using document.write seems to mess with the history on
+					//       Firefox, such that reloading doesn't get this script re-run
+					document.open('text/html', 'replace');
+					document.write(layoutTemplate.firstElementChild.outerHTML);
+					document.close();
 
-					resolve();
+					document.addEventListener('DOMContentLoaded', resolve);
 				})
 				.catch(function(error) {
 					console.warn(`Unable to retrieve layout at ${error.response.url}`);
