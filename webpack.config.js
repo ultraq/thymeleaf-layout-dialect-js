@@ -52,7 +52,7 @@ module.exports = {
 		new webpack.ResolverPlugin(
 			new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin('.bower.json', ['main'])
 		)
-	].concat(isDev ? [
+	].concat(!isDev ? [
 		new webpack.optimize.UglifyJsPlugin({
 			mangle: false
 		})
