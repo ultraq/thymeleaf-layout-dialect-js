@@ -2,6 +2,9 @@
 Changelog
 =========
 
+### 0.1.3
+ - Fragment replacement no longer removes all siblings of the fragment element.
+
 ### 0.1.2
  - Use `document.write` so that scripts get executed
 

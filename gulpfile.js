@@ -80,6 +80,7 @@ gulp.task('lint:tests', function() {
 
 gulp.task('run:tests', function() {
 	return gulp.src(tests.sourceFiles)
+		.pipe(plumber())
 		.pipe(mocha({
 			require: [
 				'babel-register',
@@ -101,11 +102,14 @@ gulp.task('test', function(callback) {
 });
 
 gulp.task('watch', function(callback) {
-	function logChanges(event) {
-		console.log(`File ${event.path} was ${event.type}`);	// eslint-disable-line no-console
+	function logAndRun(tasks) {
+		return function(event) {
+			console.log(`File ${event.path} was ${event.type}`);	// eslint-disable-line no-console
+			runSequence.apply(null, tasks);
+		};
 	}
-	gulp.watch(js.sourceFiles, ['scripts']).on('change', logChanges);
-	gulp.watch(tests.sourceFiles, ['test']).on('change', logChanges);
+	gulp.watch(js.sourceFiles, logAndRun(['scripts', 'test']));
+	gulp.watch(tests.sourceFiles, logAndRun(['test']));
 	runSequence('default', callback);
 });
 

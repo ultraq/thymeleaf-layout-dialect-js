@@ -14,10 +14,15 @@
  * limitations under the License.
  */
 
-import {getThymeleafAttributeValue} from '../../Source/utilities/Dom.js';
+import {getThymeleafAttributeValue,
+        replaceElement}             from '../../Source/utilities/Dom.js';
 
-import {$}      from 'dumb-query-selector';
+import {$,$$}   from 'dumb-query-selector';
 import {assert} from 'chai';
+import h        from 'hyperscript';
+import hh       from 'hyperscript-helpers';
+
+const {div, section} = hh(h);
 
 /**
  * Tests for the DOM utilities package.
@@ -27,11 +32,15 @@ import {assert} from 'chai';
 /* global describe, afterEach, it */
 describe('Dom utilities', function() {
 
+	const testSandbox = $('#test-sandbox');
+	afterEach(function() {
+		while (testSandbox.firstChild) {
+			testSandbox.removeChild(testSandbox.firstChild);
+		}
+	});
+
+
 	describe('#getThymeleafAttributeValue', function() {
-		const testSandbox = $('#test-sandbox');
-		afterEach(function() {
-			testSandbox.innerHTML = '';
-		});
 
 		it('Get value of a "prefix:processor" attribute', function() {
 			let testFragmentName = 'test-xmlns';
@@ -49,6 +58,41 @@ describe('Dom utilities', function() {
 
 			let fragmentValue = getThymeleafAttributeValue(testFragment, 'layout', 'fragment');
 			assert.strictEqual(fragmentValue, testFragmentName);
+		});
+	});
+
+
+	describe('#replaceElement', function() {
+
+		it('Replace the element type', function() {
+			let testFragmentTarget = div();
+			testSandbox.appendChild(testFragmentTarget);
+			let testFragmentSource = section();
+
+			replaceElement(testFragmentTarget, testFragmentSource);
+
+			assert.strictEqual(testSandbox.firstElementChild.tagName, testFragmentSource.tagName);
+		});
+
+		it('Replace the element attributes', function() {
+			let testFragmentTarget = div('#div-element');
+			testSandbox.appendChild(testFragmentTarget);
+			let testFragmentSource = div('#section-element');
+
+			replaceElement(testFragmentTarget, testFragmentSource);
+
+			assert.strictEqual(testSandbox.firstElementChild.getAttribute('id'), testFragmentSource.getAttribute('id'));
+		});
+
+		it('Replace only the specified element', function() {
+			testSandbox.appendChild(div('#child1'));
+			testSandbox.appendChild(div('#child2'));
+			let testFragmentSource = div('#child3');
+
+			replaceElement($('#child1'), testFragmentSource);
+
+			let children = $$('#test-sandbox > div');
+			assert.strictEqual(children.length, 2);
 		});
 	});
 });

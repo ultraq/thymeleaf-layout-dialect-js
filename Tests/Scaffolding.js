@@ -31,3 +31,4 @@ const DEFAULT_HTML = `
 </html>`;
 
 global.document = jsdom(DEFAULT_HTML);
+global.window = document.defaultView;

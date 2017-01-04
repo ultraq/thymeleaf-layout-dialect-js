@@ -45,8 +45,6 @@ export function getThymeleafAttributeValue(element, prefix, name) {
 export function replaceElement(target, source) {
 
 	let parent = target.parentNode;
-	while (parent.firstChild) {
-		parent.removeChild(parent.firstChild);
-	}
-	parent.appendChild(source);
+	parent.insertBefore(source, target);
+	parent.removeChild(target);
 }
