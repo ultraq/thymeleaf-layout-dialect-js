@@ -10,8 +10,6 @@ Thymeleaf Layout Dialect JS
 In-browser version of the [Thymeleaf Layout Dialect](https://github.com/ultraq/thymeleaf-layout-dialect),
 used for static prototyping.
 
-**STILL UNDER DEVELOPMENT**
-
 
 Installation
 ------------
