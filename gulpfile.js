@@ -22,6 +22,7 @@
 const gulp    = require('gulp');
 const eslint  = require('gulp-eslint');
 const gulpIf  = require('gulp-if');
+const mocha   = require('gulp-mocha');
 const plumber = require('gulp-plumber');
 
 const runSequence   = require('run-sequence');
@@ -44,7 +45,7 @@ const js = {
 	destDir: '.'
 };
 
-gulp.task('lint', function() {
+gulp.task('lint:scripts', function() {
 	return gulp.src(js.sourceFiles)
 		.pipe(plumber())
 		.pipe(eslint())
@@ -52,7 +53,7 @@ gulp.task('lint', function() {
 		.pipe(gulpIf(isWatch, eslint.failAfterError()));
 });
 
-gulp.task('build', function() {
+gulp.task('build:scripts', function() {
 	return gulp.src(js.main)
 		.pipe(plumber())
 		.pipe(webpackStream(require('./webpack.config.js')))
@@ -60,11 +61,43 @@ gulp.task('build', function() {
 });
 
 
+// TEST TASKS
+// -----------------------------------------------------------------------------
+
+const tests = {
+	sourceFiles: [
+		'Tests/*/**/*.js'
+	]
+};
+
+gulp.task('lint:tests', function() {
+	return gulp.src(tests.sourceFiles)
+		.pipe(plumber())
+		.pipe(eslint())
+		.pipe(eslint.format())
+		.pipe(gulpIf(isWatch, eslint.failAfterError()));
+});
+
+gulp.task('run:tests', function() {
+	return gulp.src(tests.sourceFiles)
+		.pipe(mocha({
+			require: [
+				'babel-register',
+				'./Tests/Scaffolding.js'
+			]
+		}));
+});
+
+
 // TASK ALIASES
 // -----------------------------------------------------------------------------
 
 gulp.task('scripts', function(callback) {
-	runSequence('lint', 'build', callback);
+	runSequence('lint:scripts', 'build:scripts', callback);
+});
+
+gulp.task('test', function(callback) {
+	runSequence('lint:tests', 'run:tests', callback);
 });
 
 gulp.task('watch', function(callback) {
@@ -72,10 +105,11 @@ gulp.task('watch', function(callback) {
 		console.log(`File ${event.path} was ${event.type}`);	// eslint-disable-line no-console
 	}
 	gulp.watch(js.sourceFiles, ['scripts']).on('change', logChanges);
+	gulp.watch(tests.sourceFiles, ['test']).on('change', logChanges);
 	runSequence('default', callback);
 });
 
 gulp.task('default', function(callback) {
-	runSequence('lint', 'build', callback);
+	runSequence('scripts', 'test', callback);
 });
 

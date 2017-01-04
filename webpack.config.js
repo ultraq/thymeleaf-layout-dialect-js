@@ -36,10 +36,7 @@ module.exports = {
 			{
 				test: /\.js$/,
 				include: path.resolve(__dirname, 'Source'),
-				loader: 'babel',
-				query: {
-					plugins: ['transform-es2015-modules-commonjs']
-				}
+				loader: 'babel'
 			}
 		]
 	},
