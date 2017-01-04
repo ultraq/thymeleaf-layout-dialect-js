@@ -15,7 +15,7 @@
 		"test": "npm run lint && npm run build && mocha --require babel-register --require Tests/Scaffolding.js Tests/*/**/*.js"
 	},
 	"dependencies": {
-		"dumb-query-selector": "https://github.com/ultraq/dumb-query-selector.git#2.0.0",
+		"dumb-query-selector": "https://github.com/ultraq/dumb-query-selector.git#2.1.0",
 		"extend": "^3.0.0"
 	},
 	"devDependencies": {
