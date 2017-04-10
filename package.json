@@ -35,7 +35,7 @@
 		"run-sequence": "^1.2.2",
 		"mocha": "^3.2.0",
 		"uglify-js": "https://github.com/mishoo/UglifyJS2.git#harmony",
-		"webpack": "^1.14.0",
+		"webpack": "^2.3.3",
 		"webpack-stream": "^3.2.0",
 		"yargs": "^6.5.0"
 	},

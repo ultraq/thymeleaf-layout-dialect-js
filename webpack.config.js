@@ -32,18 +32,16 @@ module.exports = {
 		path: __dirname
 	},
 	module: {
-		loaders: [
+		rules: [
 			{
 				test: /\.js$/,
 				include: path.resolve(__dirname, 'Source'),
-				loader: 'babel'
+				loader: 'babel-loader'
 			}
 		]
 	},
 	plugins: !isDev ? [
-		new webpack.optimize.UglifyJsPlugin({
-			mangle: false
-		})
+		new webpack.optimize.UglifyJsPlugin()
 	] : [],
 	devtool: isDev ? '#source-map' : ''
 };

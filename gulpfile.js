@@ -14,10 +14,12 @@
  * limitations under the License.
  */
 
+/* eslint-env node */
+'use strict';
+
 /**
  * Build/development scripts using gulp.
  */
-/* eslint-env node */
 
 const gulp    = require('gulp');
 const eslint  = require('gulp-eslint');
@@ -26,6 +28,7 @@ const mocha   = require('gulp-mocha');
 const plumber = require('gulp-plumber');
 
 const runSequence   = require('run-sequence');
+const webpack       = require('webpack');
 const webpackStream = require('webpack-stream');
 const yargs         = require('yargs');
 
@@ -56,7 +59,7 @@ gulp.task('lint:scripts', function() {
 gulp.task('build:scripts', function() {
 	return gulp.src(js.main)
 		.pipe(plumber())
-		.pipe(webpackStream(require('./webpack.config.js')))
+		.pipe(webpackStream(require('./webpack.config.js'), webpack))
 		.pipe(gulp.dest(js.destDir));
 });
 

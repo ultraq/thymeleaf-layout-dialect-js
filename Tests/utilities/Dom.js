@@ -29,7 +29,6 @@ const {div, section} = hh(h);
  * 
  * @author Emanuel Rabina
  */
-/* global describe, afterEach, it */
 describe('Dom utilities', function() {
 
 	const testSandbox = $('#test-sandbox');
