@@ -44,8 +44,7 @@ class DecorateProcessor {
 		return new Promise(function(resolve, reject) {
 
 			// Find the layout template
-			let layoutTemplateExpression = getThymeleafAttributeValue(htmlEl,
-				DIALECT_PREFIX, PROCESSOR_NAME);
+			let layoutTemplateExpression = getThymeleafAttributeValue(htmlEl, DIALECT_PREFIX, PROCESSOR_NAME);
 			if (!layoutTemplateExpression) {
 				console.warn('No layout:decorate or data-layout-decorate attribute found on the <html> element');
 				resolve();

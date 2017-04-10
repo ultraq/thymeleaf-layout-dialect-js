@@ -18,7 +18,7 @@ import {merge} from './Objects.js';
 
 /**
  * Checks the status of the response for 200 - 300 which is OK.
- *
+ * 
  * @private
  * @param {Response} response
  * @return {Object} The response object or a new error object.
