@@ -6,7 +6,7 @@
 	"license": "Apache-2.0",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/ultraq/thymeleaf-layout-dialect-js"
+		"url": "https://github.com/ultraq/thymeleaf-layout-dialect-js.git"
 	},
 	"scripts": {
 		"postinstall": "rm -rf node_modules/webpack/node_modules/uglify-js",

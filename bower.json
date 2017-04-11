@@ -4,10 +4,10 @@
 	"authors": [
 		"Emanuel Rabina <emanuelrabina@gmail.com> (http://www.ultraq.net.nz/)"
 	],
-	"license": "Apache License 2.0",
+	"license": "Apache-2.0",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/ultraq/thymeleaf-layout-dialect-js"
+		"url": "https://github.com/ultraq/thymeleaf-layout-dialect-js.git"
 	},
 	"keywords": [
 		"thymeleaf",
