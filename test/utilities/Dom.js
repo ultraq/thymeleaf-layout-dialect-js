@@ -15,7 +15,7 @@
  */
 
 import {getThymeleafAttributeValue,
-        replaceElement}             from '../../Source/utilities/Dom.js';
+        replaceElement}             from '../../src/utilities/Dom.js';
 
 import {$,$$}   from 'dumb-query-selector';
 import {assert} from 'chai';
