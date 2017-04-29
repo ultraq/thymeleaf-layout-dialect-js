@@ -15,7 +15,7 @@
  */
 
 import {getThymeleafAttributeValue,
-        replaceElement}             from '../../src/utilities/Dom.js';
+        replaceElement}             from '../../src/utilities/Dom';
 
 import {$,$$}   from 'dumb-query-selector';
 import {assert} from 'chai';
@@ -31,11 +31,13 @@ const {div, section} = hh(h);
  */
 describe('Dom utilities', function() {
 
-	const testSandbox = $('#test-sandbox');
+	let testSandbox;
+	beforeEach(function() {
+		testSandbox = div('#test-sandbox');
+		document.body.appendChild(testSandbox);
+	});
 	afterEach(function() {
-		while (testSandbox.firstChild) {
-			testSandbox.removeChild(testSandbox.firstChild);
-		}
+		document.body.removeChild(testSandbox);
 	});
 
 

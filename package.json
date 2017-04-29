@@ -10,18 +10,18 @@
 	},
 	"scripts": {
 		"postinstall": "rm -rf node_modules/webpack/node_modules/uglify-js",
-		"lint": "eslint gulpfile.js Source Tests",
+		"lint": "eslint gulpfile.js webpack.config.js src test",
 		"build": "webpack",
-		"test": "npm run lint && mocha --require babel-register --require Tests/Scaffolding.js Tests/*/**/*.js"
+		"test": "npm run lint && mocha"
 	},
 	"dependencies": {
 		"dumb-query-selector": "^3.0.0",
 		"extend": "^3.0.0"
 	},
 	"devDependencies": {
-		"babel-core": "^6.21.0",
 		"babel-loader": "^6.2.10",
 		"babel-plugin-transform-es2015-modules-commonjs": "^6.18.0",
+		"babel-register": "^6.24.1",
 		"chai": "^3.5.0",
 		"eslint": "^3.12.2",
 		"gulp": "^3.9.1",
@@ -32,6 +32,7 @@
 		"hyperscript": "^2.0.2",
 		"hyperscript-helpers": "^3.0.2",
 		"jsdom": "^9.9.0",
+		"jsdom-global": "^2.1.1",
 		"run-sequence": "^1.2.2",
 		"mocha": "^3.2.0",
 		"uglify-js": "https://github.com/mishoo/UglifyJS2.git#harmony",
