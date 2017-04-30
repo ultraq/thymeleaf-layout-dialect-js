@@ -1,0 +1,14 @@
+{
+	"include": [
+		"src/**/*.js"
+	],
+	"reporter": [
+		"html",
+		"text-summary"
+	],
+	"require": [
+		"babel-register"
+	],
+	"all": true,
+	"report-dir": ".coverage"
+}

@@ -1,5 +1,7 @@
 
 # JavaScript stuff
+/.coverage
+/.nyc_output
 /bower_components
 /node_modules
 npm-debug.log
