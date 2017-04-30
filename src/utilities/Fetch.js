@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import {merge} from './Objects.js';
+import {merge} from '@ultraq/object-utils';
 
 /**
  * Checks the status of the response for 200 - 300 which is OK.

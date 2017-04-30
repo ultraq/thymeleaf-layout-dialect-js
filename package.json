@@ -1,6 +1,6 @@
 {
 	"name": "thymeleaf-layout-dialect",
-	"version": "0.2.0",
+	"version": "0.2.1",
 	"description": "Thymeleaf Layout Dialect for in-browser prototyping.",
 	"author": "Emanuel Rabina <emanuelrabina@gmail.com> (http://www.ultraq.net.nz/)",
 	"license": "Apache-2.0",
@@ -17,8 +17,8 @@
 		"watch": "chokidar '**/*.js' -c 'npm test'"
 	},
 	"dependencies": {
-		"dumb-query-selector": "^3.0.0",
-		"extend": "^3.0.0"
+		"@ultraq/object-utils": "~1.0.0",
+		"dumb-query-selector": "~3.0.0"
 	},
 	"devDependencies": {
 		"babel-plugin-transform-es2015-modules-commonjs": "^6.18.0",
