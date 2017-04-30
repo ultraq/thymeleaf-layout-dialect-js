@@ -9,11 +9,10 @@
 		"url": "https://github.com/ultraq/thymeleaf-layout-dialect-js.git"
 	},
 	"scripts": {
-		"postinstall": "rm -rf node_modules/webpack/node_modules/uglify-js",
-		"lint": "eslint gulpfile.js webpack.config.js src test",
+		"lint": "eslint gulpfile.js rollup.config.js src test",
 		"test": "npm run lint && nyc mocha",
 		"coverage": "nyc report --reporter=text-lcov | coveralls",
-		"build": "webpack",
+		"build": "rollup --config && uglifyjs thymeleaf-layout-dialect.js --compress --mangle --output thymeleaf-layout-dialect.min.js",
 		"watch": "chokidar '**/*.js' -c 'npm test'"
 	},
 	"dependencies": {
@@ -21,7 +20,6 @@
 		"extend": "^3.0.0"
 	},
 	"devDependencies": {
-		"babel-loader": "^6.2.10",
 		"babel-plugin-transform-es2015-modules-commonjs": "^6.18.0",
 		"babel-register": "^6.24.1",
 		"chai": "^3.5.0",
@@ -40,8 +38,10 @@
 		"run-sequence": "^1.2.2",
 		"mocha": "^3.2.0",
 		"nyc": "^10.3.0",
+		"rollup": "^0.41.6",
+		"rollup-plugin-commonjs": "^8.0.2",
+		"rollup-plugin-node-resolve": "^3.0.0",
 		"uglify-js": "https://github.com/mishoo/UglifyJS2.git#harmony",
-		"webpack": "^2.3.3",
 		"webpack-stream": "^3.2.0",
 		"yargs": "^6.5.0"
 	},

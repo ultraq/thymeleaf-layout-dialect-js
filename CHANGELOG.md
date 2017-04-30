@@ -2,6 +2,10 @@
 Changelog
 =========
 
+### 0.2.0
+ - Build bundle using rollup instead of webpack, leads to a much smaller final
+   artifact.
+
 ### 0.1.3
  - Fragment replacement no longer removes all siblings of the fragment element.
 

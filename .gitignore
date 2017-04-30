@@ -2,13 +2,9 @@
 # JavaScript stuff
 /.coverage
 /.nyc_output
-/bower_components
 /node_modules
 npm-debug.log
 
 # IntelliJ IDEA files/directories
 /.idea
 *.iml
-
-# Generated files that I don't want to commit
-thymeleaf-layout-dialect.js.map
