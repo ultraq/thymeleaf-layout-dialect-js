@@ -11,9 +11,10 @@
 	"scripts": {
 		"postinstall": "rm -rf node_modules/webpack/node_modules/uglify-js",
 		"lint": "eslint gulpfile.js webpack.config.js src test",
-		"build": "webpack",
 		"test": "npm run lint && nyc mocha",
-		"coverage": "nyc report --reporter=text-lcov | coveralls"
+		"coverage": "nyc report --reporter=text-lcov | coveralls",
+		"build": "webpack",
+		"watch": "chokidar '**/*.js' -c 'npm test'"
 	},
 	"dependencies": {
 		"dumb-query-selector": "^3.0.0",
@@ -24,6 +25,7 @@
 		"babel-plugin-transform-es2015-modules-commonjs": "^6.18.0",
 		"babel-register": "^6.24.1",
 		"chai": "^3.5.0",
+		"chokidar-cli": "^1.2.0",
 		"coveralls": "^2.13.0",
 		"eslint": "^3.12.2",
 		"gulp": "^3.9.1",
